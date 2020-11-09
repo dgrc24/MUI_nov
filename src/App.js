@@ -1,13 +1,17 @@
 import React from 'react';
-import './App.css';
-import Main from './components/Main'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import Main from './views/Main'
 
 
 
 
 function App() {
   return (
+
     <div className="App">
+
+
+
       <Main />
 
 
