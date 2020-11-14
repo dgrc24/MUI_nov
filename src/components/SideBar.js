@@ -34,7 +34,6 @@ const SideBar = (props) => {
                     src={logo}
                     width="140px"
                     height="60px"
-
                 /></div>
             <Divider />
             <ListaDep />

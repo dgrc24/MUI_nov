@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, ListItem, ListItemText, ListItemIcon, Divider } from '@material-ui/core'
+import { List, ListItem, ListItemText, ListItemIcon, Divider, } from '@material-ui/core'
 import SchoolSharpIcon from '@material-ui/icons/SchoolSharp';
 import LocalHospitalSharpIcon from '@material-ui/icons/LocalHospitalSharp';
 import MonetizationOnSharpIcon from '@material-ui/icons/MonetizationOnSharp';
@@ -7,59 +7,70 @@ import AccountBoxSharpIcon from '@material-ui/icons/AccountBoxSharp';
 import EmailSharpIcon from '@material-ui/icons/EmailSharp';
 import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp';
 import HomeSharpIcon from '@material-ui/icons/HomeSharp';
+import { withRouter } from "react-router-dom";
 
 
-const ListaDep = () => {
+
+
+
+const ListaDep = (props) => {
+    const { history } = props;
+    const itemsList = [
+        {
+            text: "Home",
+            icon: <HomeSharpIcon />,
+            onClick: () => history.push("/Home")
+        },
+        {
+            text: "Control Escolar",
+            icon: <SchoolSharpIcon />,
+            onClick: () => history.push("/Main/CtrlEsc")
+        },
+        {
+            text: "Recursos Financieros",
+            icon: <MonetizationOnSharpIcon />,
+            onClick: () => history.push("/Main/Financieros")
+        },
+        {
+            text: "Departamento de Psicología",
+            icon: <LocalHospitalSharpIcon />,
+            onClick: () => history.push("/Main/Psicologia")
+        },
+        {
+            text: "Mensajes",
+            icon: <EmailSharpIcon />,
+            onClick: () => history.push("/Main/Inbox")
+        },
+        {
+            text: "Mi cuenta",
+            icon: <AccountBoxSharpIcon />,
+            onClick: () => history.push("/Main/Micuenta")
+        },
+        {
+            text: "Salir",
+            icon: <ExitToAppSharpIcon />,
+            onClick: () => history.push("/Main/Salir")
+        },
+    ];
+
     return (
-        <div>
-            <List component='nav'>
-                <ListItem button>
-                    <ListItemIcon>
-                        <HomeSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inicio" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <SchoolSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Contro Escolar" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <LocalHospitalSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Atención Psicológica" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <MonetizationOnSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Recursos Financieros" />
-                </ListItem>
-                <Divider></Divider>
-                <ListItem button>
-                    <ListItemIcon>
-                        <EmailSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Buzón de mensajes" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <AccountBoxSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Mi Cuenta" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <ExitToAppSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cerrar Sesión" />
-                </ListItem>
 
-            </List>
-        </div>
+
+        <List component='nav'>
+            {itemsList.map((item, index) => {
+                const { text, icon, onClick } = item;
+                return (
+                    <ListItem button key={text} onClick={onClick}>
+                        {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                        <ListItemText primary={text} />
+                    </ListItem>);
+            })}
+
+        </List>
+
+
+
     )
 }
 
-export default ListaDep
+export default withRouter(ListaDep)

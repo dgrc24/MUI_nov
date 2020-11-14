@@ -1,12 +1,11 @@
 import React from 'react'
 
-function ctrlEscolar() {
+function Buzon() {
     return (
         <div>
-
 
         </div>
     )
 }
 
-export default ctrlEscolar
+export default Buzon

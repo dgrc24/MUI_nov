@@ -2,15 +2,17 @@ import React from 'react'
 import {
     makeStyles, Typography, Hidden, colors, Divider, Button,
 } from '@material-ui/core'
-import { FullscreenExit } from '@material-ui/icons'
 import NavBar from '../components/NavBar'
 import SideBar from '../components/SideBar'
-import Card from '../components/Cards/Card'
-import CardHeader from '../components/Cards/CardHeader'
-import CardBody from '../components/Cards/CardBody'
-import CardFooter from '../components/Cards/CardFooter'
-import CardAvatar from '../components/Cards/CardAvatar'
-import banner from '../assets/img/banner-beni.webp'
+import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter, Redirect } from 'react-router-dom'
+import Psicologia from '../views/Psicologia'
+import CtrlEsc from '../views/CtrlEsc'
+import HomePage from '../views/HomePage'
+import Financieros from '../views/Financieros'
+import Inbox from '../views/Buzon'
+import MiCuenta from '../views/MiCuenta'
+
+
 
 
 
@@ -22,7 +24,7 @@ const styles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(3),
+        padding: theme.spacing(8),
     },
     cardbg: {
         color: '#2BD9B6'
@@ -37,7 +39,10 @@ const Main = () => {
     const accAbrir = () => {
         setAbrir(!abrir)
     }
+
     return (
+
+
         <div className={classes.root}>
             <NavBar accAbrir={accAbrir} />
             <Hidden xsDown>
@@ -55,45 +60,14 @@ const Main = () => {
 
             <div className={classes.content}>
                 <div className={classes.toolbar}></div>
-                <Card>
-                    <CardHeader  >
-                        <a href="#pablo" onClick={e => e.preventDefault()}>
-                            <img src={banner} alt="..." width="100%" height="160px" />
-                        </a>
-                        <h3>
-                            BECAS BENITO JUAREZ
-                        </h3>
-                        <Divider />
-                    </CardHeader>
-                    <CardBody>
-                        <Typography variant="h5" align="center">
-                            Activa tu ficha SUBES para poder solicitar una beca proporcionada por el gobierno
-                            federal.
-                            <br></br>
-                        </Typography>
-                        <br>
-                        </br>
-                        <Typography align="justify" >
-                            Población a la que está dirigida:
-                            Alumnas y alumnos que cursan la Educación Media Superior en instituciones públicas de modalidad escolarizada.
-<br></br>
-                            Registro:
-                            Se realiza directamente en los planteles escolares, con personal acreditado y capacitado que realiza el padrón. La Coordinación Nacional informa a la escuela la fecha y el medio de entrega.
-<br></br>
-                            Monto y forma de pago:
-                            Consta de 800 pesos mensuales entregados bimestralmente por becario (1,600 pesos bimestrales), durante los diez meses que dura el ciclo escolar.
-<br></br>
-                            Dependiendo de la localidad donde viva el o la becaria, puede ser mediante pago electrónico o en mesas de pago establecidas en localidades donde no hay bancos.
-                        </Typography>
-
-                    </CardBody>
-                    <CardFooter>
-                        <Button variant="contained" color="primary" size="large">
-                            Activar Ficha
-                        </Button>
-                    </CardFooter>
-                </Card>
-
+                <Switch>
+                    <Route exact path="/Home" component={HomePage} />
+                    <Route path="/Main/Psicologia" component={Psicologia} />
+                    <Route path="/Main/CtrlEsc" component={CtrlEsc} />
+                    <Route path="/Main/Financieros" component={Financieros} />
+                    <Route path="/Main/Inbox" component={Inbox} />
+                    <Route path="/Main/Micuenta" component={MiCuenta} />
+                </Switch>
             </div>
 
         </div >
