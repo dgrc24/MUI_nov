@@ -16,16 +16,6 @@ const db = mysql.createConnection({
 
 
 
-
-
-app.get('/api/get', (req, res) => {
-    const sqlRead = 'select * from datosP_al'
-    db.query(sqlRead, (err, result) => {
-        res.send(result)
-
-    })
-});
-
 app.get('/', (req, res) => {
     res.send("hello world")
 });
