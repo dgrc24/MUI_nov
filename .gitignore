@@ -1,2 +1,2 @@
-node_modules
-src/server/config
+client/node_modules
+server/node_modules

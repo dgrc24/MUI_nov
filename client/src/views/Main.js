@@ -25,6 +25,7 @@ const styles = makeStyles(theme => ({
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(8),
+
     },
     cardbg: {
         color: '#2BD9B6'

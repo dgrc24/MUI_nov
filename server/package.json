@@ -1,12 +1,12 @@
 {
-  "name": "cobaej",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Sistema gestor de trámites internos del COBAEJ 7",
+  "description": "servidor de sigt",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "devStart": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStart": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
