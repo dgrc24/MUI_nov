@@ -1,12 +1,31 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import CardAvisos from '../components/CardsHome'
+import { Divider, makeStyles, Typography } from '@material-ui/core'
+const styles = makeStyles(theme => ({
+    container: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+
+
+
+}))
 
 function HomePage() {
+    const classes = styles();
     return (
-        <div>
-            <Typography variant="h1" color="initial">
-                ESTE ES EL HOME DE LA WEBAPP
-            </Typography>
+        <div className={classes.container}>
+            <div >
+                <Typography variant='h5' align='center'>
+                    Avisos recientes
+                </Typography>
+
+            </div>
+            <Divider></Divider>
+
+            <CardAvisos />
+
+
         </div>
     )
 }

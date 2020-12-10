@@ -62,12 +62,14 @@ const Main = () => {
             <div className={classes.content}>
                 <div className={classes.toolbar}></div>
                 <Switch>
-                    <Route exact path="/Home" component={HomePage} />
+                    <Route path="/" component={HomePage} exact />
+                    <Route path="/Home" component={HomePage} />
                     <Route path="/Main/Psicologia" component={Psicologia} />
                     <Route path="/Main/CtrlEsc" component={CtrlEsc} />
                     <Route path="/Main/Financieros" component={Financieros} />
                     <Route path="/Main/Inbox" component={Inbox} />
                     <Route path="/Main/Micuenta" component={MiCuenta} />
+
                 </Switch>
             </div>
 

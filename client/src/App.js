@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter, Redirect }
 import FormPsic from './components/FormPsic'
 import CtrlEsc from './views/CtrlEsc'
 import Home from './views/HomePage'
+import Login from './views/Login';
 
 
 
@@ -22,7 +23,8 @@ function App() {
   return (
 
     <div className="App">
-      <Main />
+      {/* <Main /> */}
+      <Login></Login>
     </div >
 
   );

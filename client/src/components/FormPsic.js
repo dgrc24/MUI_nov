@@ -1,8 +1,7 @@
 import 'date-fns'
 import { React, useEffect, useState } from 'react'
-import { TextField, makeStyles, Grid, Typography, Divider, Button, } from '@material-ui/core'
+import { TextField, makeStyles, Grid, Typography, Divider, Button, Card, CardActions, CardContent, } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns'
-import { esES } from '@material-ui/core/locale'
 import Axios from 'axios'
 
 import {
@@ -10,7 +9,7 @@ import {
     KeyboardTimePicker,
     KeyboardDatePicker
 } from '@material-ui/pickers';
-import { getDate, getDay, getHours, getMinutes, getMonth, getTime, getUnixTime, getYear } from 'date-fns'
+import { getDate, getHours, getMinutes, getMonth, getYear } from 'date-fns'
 
 
 
@@ -102,20 +101,14 @@ function FormPsic() {
         const sHora = (getHours(date) + ":" + getMinutes(date))
         setFecha(sFecha)
         setHora(sHora)
-
-
-
-
-
     };
 
-
-
-
-
-
-
-
+    const handleNombreClick = () => {
+        setNombreAlumno(document.getElementById('nombreTest').value)
+        setSemestre(document.getElementById('Semestre').value)
+        setGrupo(document.getElementById('Grupo').value)
+        setNctrl(document.getElementById('nc').value)
+    }
     const classes = styles()
     return (
 
@@ -138,6 +131,7 @@ function FormPsic() {
                                     value={val.numCtrl}
                                     variant="filled"
                                 />
+
                             </Grid>
 
                             <Grid item sm={3}>
@@ -161,7 +155,7 @@ function FormPsic() {
                             <Grid item sm={6}>
                                 <TextField
                                     disabled
-                                    id="Nombre"
+                                    id='nombreTest'
                                     label="Nombre del Alumno: "
                                     value={val.nombres + " " + val.apell_pat + " " + val.apell_mat}
                                     variant="filled"
@@ -185,14 +179,17 @@ function FormPsic() {
                                     variant="filled"
                                     content />
                             </Grid>
+
                         </Grid>
                     )
+
                 })}
+                <Button className={classes.buttonA} onClick={handleNombreClick}>CONTINUAR</Button>
 
 
 
 
-                < Grid item lg={12}>
+                < Grid id="crearcita" item lg={12}>
                     <Typography variant="h4" color="initial" align="center">Datos de la reservación</Typography>
                 </Grid>
 
@@ -221,10 +218,10 @@ function FormPsic() {
                         <KeyboardTimePicker
                             margin="normal"
                             autoOk
+                            minutesStep={20}
                             id="time-picker"
                             label="Seleccionar hora de la cita:"
                             value={selectedDate}
-                            minutesStep='30'
                             onChange={handleDateChange}
                             KeyboardButtonProps={{
                                 'aria-label': 'change time',
