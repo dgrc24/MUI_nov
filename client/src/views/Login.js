@@ -3,14 +3,27 @@ import {
     Grid, Typography, Link, makeStyles, CssBaseline, Avatar, Paper,
     TextField,
     FormControlLabel, Checkbox,
-    Button, Box, AppBar, Toolbar, CardMedia,
-
+    Button, Box, AppBar, Toolbar
 } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import bgCOBAEJ from '../assets/img/bgCobaej.jpg'
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import AuthService from "../services/auth.service";
 
+
+const required = value => {
+    if (!value) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                Este campo es obligatorio
+            </div>
+        );
+    }
+};
 
 function Copyright() {
+
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'SIGT © '}
@@ -55,6 +68,63 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Login() {
     const classes = useStyles();
+    this.handleLogin = this.handleLogin.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.state = {
+        username: "",
+        password: "",
+        loading: false,
+        message: ""
+    };
+    const onChangeUsername = (e) => {
+        this.setState({
+            username: e.target.value
+        });
+    }
+
+    const onChangePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        });
+    }
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            message: "",
+            loading: true
+        });
+
+        this.form.validateAll();
+
+        if (this.checkBtn.context._errors.length === 0) {
+            AuthService.login(this.state.username, this.state.password).then(
+                () => {
+                    this.props.history.push("/profile");
+                    window.location.reload();
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+
+                    this.setState({
+                        loading: false,
+                        message: resMessage
+                    });
+                }
+            );
+        } else {
+            this.setState({
+                loading: false
+            });
+        }
+    }
     return (
         <Grid container component="main" className={classes.root} spacing={3}>
             <CssBaseline />
@@ -76,7 +146,7 @@ function Login() {
                     <Typography component="h1" variant="h5">
                         Iniciar sesión
             </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} onSubmit={this.handleLogin}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -85,6 +155,8 @@ function Login() {
                             id="email"
                             label="Correo electrónico"
                             name="email"
+                            value={this.state.username}
+                            onChange={this.onChangeUsername}
                             autoComplete="email"
                             autoFocus
                         />
@@ -94,6 +166,8 @@ function Login() {
                             required
                             fullWidth
                             name="password"
+                            value={this.state.password}
+                            onChange={this.onChangePassword}
                             label="Contraseña"
                             type="password"
                             id="password"

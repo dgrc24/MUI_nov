@@ -6,6 +6,7 @@ import FormPsic from './components/FormPsic'
 import CtrlEsc from './views/CtrlEsc'
 import Home from './views/HomePage'
 import Login from './views/Login';
+import Logueo from './views/Logueo';
 
 
 
@@ -13,21 +14,13 @@ import Login from './views/Login';
 
 
 function App() {
-  const HomePage = () => {
-    return (
-      <Home />
 
-    );
-
-  }
   return (
+    <Main />
+  )
 
-    <div className="App">
-      {/* <Main /> */}
-      <Login></Login>
-    </div >
 
-  );
+
 }
 
 export default App;
